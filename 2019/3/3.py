@@ -1,47 +1,34 @@
 with open(r"2019\3\3.txt", "r") as f:
     wires = [cords for cords in f.read().split("\n")]
 
-wires1 = wires[0].split(",")
-wires2 = wires[1].split(",")
-
-wires[0] = wires1
-wires[1] = wires2
+wire1 = wires[0].split(",")
+wire2 = wires[1].split(",")
 
 
+def Dots(input_wire):
+    cordX = 0
+    cordY = 0
+    step = 0
 
-y1 = 0
-x1 = 0
+    directions = {'R': (1,0), 'L': (-1,0), 'U': (0,1), 'D': (0,-1)}
+    points = {}
 
-y2 = 0
-x2 = 0
+    for part in input_wire:
+        dx, dy = directions[part[0]]
+        for _ in range(int(part[1:])):
+            cordX += dx
+            cordY += dy
+            step += 1
+            if (cordX, cordY) not in points:
+                points[(cordX, cordY)] = step
+    return points
 
-firstList = wires[0]
-secondList = wires[1]
+points1 = Dots(wire1)
+points2 = Dots(wire2)
 
-x2 += int(firstList[1][1:])
-print(x2)
+intersections = [dot for dot in points1 if dot in points2]
+shortest = min(abs(x) + abs(y) for (x, y) in intersections)
+fewest_steps = min(points1[dots] + points2[dots] for dots in intersections)
 
-"""
-for i in range(len(wires[1])):
-
-    if(firstList[0] == "U"):
-        y1 += int(firstList[i][1:])
-    elif(firstList[0] == "L"):
-        x1 -= int(firstList[i][1:])
-    elif(firstList[0] == "D"):
-        y1 -= int(firstList[i][1:])
-    elif(firstList[0] == "R"):
-        x1 += int(firstList[i][1:])
-
-    if(secondList[0] == "U"):
-        y2 += int(secondList[i][1:])
-    elif(secondList[0] == "L"):
-        x2 -= int(secondList[i][1:])
-    elif(secondList[0] == "D"):
-        y2 -= int(secondList[i][1:])
-    elif(secondList[0] == "R"):
-        x2 += int(secondList[i][1:])
-    print(x1)
-"""
-    #if((x1 == x2) and (y1 == y2)):
-    #    print(f"firstList = {x1},{y1} secondList = {x2},{y2}")
+print(shortest)
+print(fewest_steps)
