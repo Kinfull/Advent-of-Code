@@ -4,7 +4,6 @@ with open(r"2019\3\3.txt", "r") as f:
 wire1 = wires[0].split(",")
 wire2 = wires[1].split(",")
 
-
 def Dots(input_wire):
     cordX = 0
     cordY = 0
