@@ -1,13 +1,23 @@
 with open(r"2020\2\2.txt", "r") as f:
-    passwordSet = f.readlines()
+    passwordDict = [cords.rstrip("None") for cords in f.readlines()]
 
-passwordDict = dict.fromkeys(passwordSet)
 
-for i in range(len(passwordDict), 4):
-    print(i)
+def PasswordFix(input_list):
+    array = input_list[:]
     
+    for index in array:
+        """
+        if(index[1] == "-"):
+            lowerRange = index[0]
+        else:
+            lowerRange = index[0:1]
+        if(index[3] == " "):
+            upperRange = index[2]
+        else:
+            upperRange = index[2:3]
+        if(index[4] != " "): 
+            policy = index[4]
+        else:
+            policy = index[5]"""
 
-for i in passwordDict:
-    print(f"{i}: {passwordDict[i]}")
-
-print(passwordDict)
+PasswordFix(passwordDict)
