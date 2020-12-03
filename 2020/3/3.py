@@ -1,4 +1,3 @@
-
 def calc(dx, dy):
     with open(r"2020\3\3.txt", "r") as f:
         treeMap = [items for items in f.read().split("\n")[::dy]]
