@@ -26,8 +26,8 @@ points1 = Dots(wire1)
 points2 = Dots(wire2)
 
 intersections = [dot for dot in points1 if dot in points2]
-shortest = min(abs(x) + abs(y) for (x, y) in intersections)
-fewest_steps = min(points1[dots] + points2[dots] for dots in intersections)
+part1 = min(abs(x) + abs(y) for (x, y) in intersections)
+part2 = min(points1[dots] + points2[dots] for dots in intersections)
 
-print(shortest)
-print(fewest_steps)
+print(part1)
+print(part2)
